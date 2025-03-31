@@ -19,7 +19,7 @@ class MyController {
     @Autowired
     private  ChatClient chatClient2;   // 可以使用一些通用功能   适用与简单场景
     @Autowired
-    private ChatModel chatModel1;   // 可以使用不同的模型的独有功能  功能更强大
+    private ChatModel chatModel3;   // 可以使用不同的模型的独有功能  功能更强大
 
 
     @GetMapping("/ai")
@@ -43,7 +43,7 @@ class MyController {
 
     @GetMapping("/chatModel")
     String chatModel(@RequestParam(value = "message",defaultValue = "给我讲个笑话")String message) {
-        ChatResponse response = chatModel1.call(   // call改为stream即可实现流式输出
+        ChatResponse response = chatModel3.call(   // call改为stream即可实现流式输出
                 new Prompt( // 下面一行就是用户输入的message 内部会自动生成一个UserMessage
                         "Generate the names of 5 famous pirates.",   // =new UserMessage(message)
                         OpenAiChatOptions.builder()
