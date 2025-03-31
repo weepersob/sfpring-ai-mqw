@@ -20,8 +20,7 @@ class MyController {
     private  ChatClient chatClient;   // 可以使用一些通用功能   适用与简单场景
     @Autowired
     private ChatModel chatModel;   // 可以使用不同的模型的独有功能  功能更强大
-    @Autowired
-    private ChatModel chatModel2;
+
 
     @GetMapping("/ai")
     String generation(@RequestParam(value = "message",defaultValue = "给我讲个笑话")String message) {
