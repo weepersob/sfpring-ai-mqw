@@ -32,7 +32,7 @@ class MyController {
     }
 
     @GetMapping(value = "/stream",produces = "text/md;charset=UTF-8")
-    Flux<String> generationStream(@RequestParam(value = "message",defaultValue = "给我讲个笑话")String message) {
+    Flux<String> generationStream(@RequestParam(value = "message",defaultValue = "给我讲个鬼故事")String message) {
         Flux<String> output = chatClient.prompt()
                 .user(message) //=new UserMessage(message)
                 .system("You are a senior programmer")   // 配置类里面设置的默认角色是全局的  我们可以用这个system 来进行不同的角色设置
