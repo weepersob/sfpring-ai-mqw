@@ -17,14 +17,14 @@ import reactor.core.publisher.Flux;
 class MyController {
 
     @Autowired
-    private  ChatClient chatClient;   // 可以使用一些通用功能   适用与简单场景
+    private  ChatClient chatClient2;   // 可以使用一些通用功能   适用与简单场景
     @Autowired
     private ChatModel chatModel1;   // 可以使用不同的模型的独有功能  功能更强大
 
 
     @GetMapping("/ai")
     String generation(@RequestParam(value = "message",defaultValue = "给我讲个笑话")String message) {
-        return this.chatClient.prompt()
+        return this.chatClient2.prompt()
             .user(message)   // 设置用户输入
             .call()  // 发送请求调用模型
             .content(); // 获取模型返回string 类型的结果
@@ -32,7 +32,7 @@ class MyController {
 
     @GetMapping(value = "/stream",produces = "text/md;charset=UTF-8")
     Flux<String> generationStream(@RequestParam(value = "message",defaultValue = "给我讲个鬼故事")String message) {
-        Flux<String> output = chatClient.prompt()
+        Flux<String> output = chatClient2.prompt()
                 .user(message) //=new UserMessage(message)
                 .system("You are a senior programmer")   // 配置类里面设置的默认角色是全局的  我们可以用这个system 来进行不同的角色设置
                 .stream()
